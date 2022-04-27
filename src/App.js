@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 
 const pokeCards = [
@@ -10,18 +11,26 @@ const pokeCards = [
 
 
 function App() {
+  const [cartas,setCartas]=useState([])
+  const [turnos,setTurnos]=useState(0)
 
   //Pokecards aleatorias
   const revolverCartas = () => {
-    const cartasAletorias = [...pokeCards, ...pokeCards]
+    const cartasRevueltas = [...pokeCards, ...pokeCards]
       .sort(() => Math.random() - 0.5)
       .map((cartas) => ({...cartas,id: Math.random}))
+
+      //se actualizan las cartas que se van a desplegar
+      setCartas(cartasRevueltas)
+      setTurnos(0)
   }
+
+  console.log(cartas,turnos)
 
   return (
     <div className="App">
       <h1>Juego Memoria</h1>
-      <button>Nuevo Juego</button>
+      <button onClick={revolverCartas}>Nuevo Juego</button>
     </div>
   );
 }
