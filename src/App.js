@@ -18,7 +18,7 @@ function App() {
   const revolverCartas = () => {
     const cartasRevueltas = [...pokeCards, ...pokeCards]
       .sort(() => Math.random() - 0.5)
-      .map((cartas) => ({...cartas,id: Math.random}))
+      .map((carta) => ({...carta,id: Math.random()}))
 
       //se actualizan las cartas que se van a desplegar
       setCartas(cartasRevueltas)
@@ -31,6 +31,18 @@ function App() {
     <div className="App">
       <h1>Juego Memoria</h1>
       <button onClick={revolverCartas}>Nuevo Juego</button>
+      
+      <div className='card-grid'>
+        {cartas.map(carta=>(
+          <div className="carta"key={carta.id}>
+            <div>
+              <img className="front" src={carta.src} alt="Enfrente de carta" />
+              <img className="back" src="/img/HideCard.jpeg" alt="Parte trasera"/>
+            </div>
+
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
