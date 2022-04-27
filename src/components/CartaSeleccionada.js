@@ -1,10 +1,14 @@
 import React from 'react'
 import './CartaSeleccionada.css'
 
-export default function CartaSeleccionada({ carta, handleChoice,flipped }) {
+export default function CartaSeleccionada({ carta, handleChoice,flipped,deshabilitado }) {
 
     const handleClick=()=>{
-        handleChoice(carta)
+        if(!deshabilitado){
+            handleChoice(carta)
+
+        }
+        
 
     }
     return (

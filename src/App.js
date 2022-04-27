@@ -16,6 +16,7 @@ function App() {
   const [turnos, setTurnos] = useState(0)
   const [selecionUno, setSeleccionUno] = useState(null)
   const [selecionDos, setSeleccionDos] = useState(null)
+  const [deshabilitado, setDeshabilitado] = useState(false)
 
   //Pokecards aleatorias
   const revolverCartas = () => {
@@ -23,6 +24,8 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((carta) => ({ ...carta, id: Math.random() }))
 
+      setSeleccionUno(null)
+      setSeleccionDos(null)
     //se actualizan las cartas que se van a desplegar
     setCartas(cartasRevueltas)
     setTurnos(0)
@@ -35,7 +38,10 @@ function App() {
   }
   //Comparar si las dos imagenes son iguales
   useEffect(() => {
+
     if (selecionUno && selecionDos) {
+      //setDeshabilitado autentica que solo se puedan girar 2 cartas
+      setDeshabilitado(true)
       //comparacion a traves de las direcciones para ver si son iguales
       if (selecionUno.src === selecionDos.src) {
         setCartas(cartasAnteriores => {
@@ -51,7 +57,7 @@ function App() {
       } else {
         //temporizador de volteo de cartas
 
-        setTimeout(()=>reiniciarTurno(), 1000)
+        setTimeout(() => reiniciarTurno(), 1000)
       }
     }
 
@@ -64,7 +70,13 @@ function App() {
     setSeleccionUno(null)
     setSeleccionDos(null)
     setTurnos(prevTurnos => prevTurnos + 1)
+    setDeshabilitado(false)
   }
+
+  //iniciar automaticamente
+  useEffect(()=>{
+    revolverCartas()
+  },[])
 
   return (
     <div className="App">
@@ -81,9 +93,11 @@ function App() {
               carta === selecionDos ||
               carta.matched
             }
+            deshabilitado={deshabilitado}
           />
         ))}
       </div>
+      <p>Pokebolas gastadas: {turnos}</p>
     </div>
   );
 }
