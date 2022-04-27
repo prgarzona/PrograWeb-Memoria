@@ -7,6 +7,7 @@ const pokeCards = [
   { "src": "/img/006.png", matched: false },
   { "src": "/img/009.png", matched: false },
   { "src": "/img/150.png", matched: false },
+  { "src": "/img/025.png", matched: false },
   { "src": "/img/249.png", matched: false }
 ]
 
