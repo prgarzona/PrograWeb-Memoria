@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import CartaSeleccionada from './components/CartaSeleccionada';
 
@@ -31,6 +31,27 @@ function App() {
 //Seleccionar una opcion
 const handleChoice = (carta)=>{
   selecionUno ? setSeleccionDos(carta): setSeleccionUno(carta)
+
+}
+//Comparar si las dos imagenes son iguales
+useEffect(()=>{
+  if (selecionUno && selecionDos){
+    //comparacion a traves de las direcciones para ver si son iguales
+    if(selecionUno.src===selecionDos.src){
+      console.log('Cartas coinciden')
+      reiniciarTurno()
+    }else{
+      console.log('No son iguales')
+      reiniciarTurno()
+    }
+  }
+
+},[selecionUno,selecionDos])
+//reinicio
+const reiniciarTurno=()=>{
+  setSeleccionUno(null)
+  setSeleccionDos(null)
+  setTurnos(prevTurnos=>prevTurnos +1)
 }
 
   return (
