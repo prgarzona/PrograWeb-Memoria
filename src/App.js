@@ -49,6 +49,7 @@ function App() {
         })
         reiniciarTurno()
       } else {
+        //temporizador de volteo de cartas
 
         setTimeout(()=>reiniciarTurno(), 1000)
       }
