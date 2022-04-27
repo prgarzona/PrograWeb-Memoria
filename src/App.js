@@ -14,6 +14,8 @@ const pokeCards = [
 function App() {
   const [cartas,setCartas]=useState([])
   const [turnos,setTurnos]=useState(0)
+  const [selecionUno,setSeleccionUno]=useState(null)
+  const [selecionDos,setSeleccionDos]=useState(null)
 
   //Pokecards aleatorias
   const revolverCartas = () => {
@@ -26,7 +28,10 @@ function App() {
       setTurnos(0)
   }
 
-  console.log(cartas,turnos)
+//Seleccionar una opcion
+const handleChoice = (carta)=>{
+  selecionUno ? setSeleccionDos(carta): setSeleccionUno(carta)
+}
 
   return (
     <div className="App">
@@ -35,7 +40,11 @@ function App() {
       
       <div className='card-grid'>
         {cartas.map(carta=>(
-         <CartaSeleccionada key={carta.id} carta={carta}/>
+         <CartaSeleccionada 
+         key={carta.id} 
+         carta={carta}
+         handleChoice={handleChoice}
+         />
         ))}
       </div>
     </div>
