@@ -50,7 +50,7 @@ function App() {
         reiniciarTurno()
       } else {
 
-        reiniciarTurno()
+        setTimeout(()=>reiniciarTurno(), 1000)
       }
     }
 
