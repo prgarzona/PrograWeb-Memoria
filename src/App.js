@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import CartaSeleccionada from './components/CartaSeleccionada';
 
 const pokeCards = [
   { "src": "/img/004.png" },
@@ -34,13 +35,7 @@ function App() {
       
       <div className='card-grid'>
         {cartas.map(carta=>(
-          <div className="carta"key={carta.id}>
-            <div>
-              <img className="front" src={carta.src} alt="Enfrente de carta" />
-              <img className="back" src="/img/HideCard.jpeg" alt="Parte trasera"/>
-            </div>
-
-          </div>
+         <CartaSeleccionada key={carta.id} carta={carta}/>
         ))}
       </div>
     </div>
